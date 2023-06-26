@@ -9,6 +9,7 @@ function initializeFunc1(){
   // トリガーを設置
   try{
     setOnEditTrigger();
+    setOnOpenTrigger();
   }catch(e){
     Browser.msgBox('トリガーの設定に失敗しました'+e);
     statusFunc('エラー');

@@ -1,7 +1,7 @@
 /**
  * スプレッドシート起動時に実行する関数
  */
-function onOpen() {
+function onOpenTriggerFunction() {
 
   const setSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("ホーム");
   setSheet.getRange("O6").setValue(new Date());
@@ -17,6 +17,7 @@ function onOpen() {
   }catch(e){
     statusFunc('エラー');
     showProcess('やり直してください');
+    console.log(e);
     return;
   }
 
