@@ -18,3 +18,57 @@ function getLastColumnInRange(range){
   return lastColumn;
   
 }
+
+/**
+ * 24以上の数字を切り捨てる関数
+ * @param {Number|String} number
+ * @returns {String} properNumber
+ */
+function cutoffOverHour(number){
+  let properNumber = number;
+  if(Number(number) > 24 ){
+    properNumber = 24;
+  }
+  return properNumber;
+}
+
+/**
+ * 60以上の数字を切り捨てる関数
+ * @param {Number|String} number
+ * @returns {String} properNumber
+ */
+function cutoffOverMinute(number){
+  let properNumber = number;
+  if(Number(number) > 60 ){
+    properNumber = 60;
+  }
+  return properNumber;
+}
+
+/**
+ * 12以上の数字を切り捨てる関数
+ * @param {Number|String} number
+ * @returns {String} properNumber
+ */
+function cutoffOverMonth(number){
+  let properNumber = number;
+  if(Number(number) > 12 ){
+    const today = new Date();
+    properNumber = today.getMonth()+1;
+  }
+  return properNumber;
+}
+
+/**
+ * 31以上の数字を切り捨てる関数
+ * @param {Number|String} number
+ * @returns {String} properNumber
+ */
+function cutoffOverDate(number){
+  let properNumber = number;
+  if(Number(number) > 31 ){
+    const today = new Date();
+    properNumber = today.getDate();
+  }
+  return properNumber;
+}
