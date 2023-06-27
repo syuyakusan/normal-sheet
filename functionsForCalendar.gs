@@ -30,6 +30,10 @@ function checkCalendar() {
  */ 
 function getCalenderEvent(id) {
 
+  if(id === undefined){
+    return;
+  }
+
   const spreadSheet = SpreadsheetApp.getActiveSpreadsheet();
   const setSheet = spreadSheet.getSheetByName('ホーム');
 
