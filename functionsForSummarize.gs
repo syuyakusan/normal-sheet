@@ -42,7 +42,7 @@ function checkDiff(){
   // tmpColumnArray[i] i行のtmpRowArray 
   for (i=4;i<sumSheetLastRow;i++) {  //行の移動
     tmpRowArray =[];
-    for (j=1;j<sumSheetLastColumn;j++) {  //列の移動
+    for (j=1;j<sumSheetLastColumn+1;j++) {  //列の移動
       nameArray = [];
       for (k=0;k < memberNum;k++) { //人の移動
         if (values[k][i][j] === "○") { //判定(漢数字ゼロではない)
@@ -67,7 +67,8 @@ function checkDiff(){
   let tmpList = [];
   let inputArray = sumSheet.getRange(5,2,35,74).getValues();
   for (i=4;i<sumSheetLastRow;i++) {
-    for (j=1;j<sumSheetLastColumn;j++) {
+    for (j=1;j<sumSheetLastColumn+1
+    ;j++) {
       let tmpCell = sumSheet.getRange(i+1,j+1);
       tmpList = attendanceMatrix[i][j];
       if (tmpList != []){

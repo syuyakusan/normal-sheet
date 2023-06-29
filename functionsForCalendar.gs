@@ -11,7 +11,7 @@ function checkCalendar() {
   const otherCalenderId = PropertiesService.getScriptProperties().getProperty('otherCalenderId');
   const companyCalenderId = PropertiesService.getScriptProperties().getProperty('companyCalenderId');
 
-  getCalenderEvent(privateCalenderId);
+  // getCalenderEvent(privateCalenderId);
   getCalenderEvent(ensembleCalenderId);
   getCalenderEvent(meetingCalenderId);
   getCalenderEvent(otherCalenderId);
@@ -41,8 +41,14 @@ function getCalenderEvent(id) {
   let myCalendar = CalendarApp.getCalendarById(id);
   //今日のDateオブジェクトをつくる
   let startDate = new Date();
+  const calendarFirstDate = setSheet.getRange('F7').getValue();;
+  if(startDate < calendarFirstDate){
+    startDate = calendarFirstDate;
+  }
   //今日から28日後のDateオブジェクトをつくる
   let endDate = new Date();
+  endDate.setFullYear(startDate.getFullYear())
+  endDate.setMonth(startDate.getMonth())
   endDate.setDate(startDate.getDate() + 28);
   //開始日～終了日に存在するGoogleカレンダーのイベントを取得する
   let myEvent = myCalendar.getEvents(startDate, endDate);
@@ -99,8 +105,8 @@ function getCalenderEvent(id) {
     let firstDay = new Date(fd); //カレンダーの最初の日付
 
     let setDay = new Date(fd); //指定された日付
-        setDay.setMonth(month-1);
-        setDay.setDate(date);
+    setDay.setMonth(month-1);
+    setDay.setDate(date);
 
     let difDays = (setDay - firstDay)/86400000;
 
@@ -119,7 +125,7 @@ function getCalenderEvent(id) {
 
   //配列をもとにスプレッドシートに入力
   const sheet = spreadSheet.getSheetByName('集約');
-  const notes = sheet.getRange(1,1,35,74).getNotes();  
+  const notes = sheet.getRange(1,1,35,75).getNotes();  
   
   for (let i=0;i<calculatedTimeArray.length;i++) {
     const array = calculatedTimeArray[i];
@@ -134,6 +140,6 @@ function getCalenderEvent(id) {
       notes[row+j-1][column-1] = notes[row+j-1][column-1] +'\n'+title;
     }
   }
-  sheet.getRange(1,1,35,74).setNotes(notes);
+  sheet.getRange(1,1,35,75).setNotes(notes);
 
 }
