@@ -23,14 +23,13 @@ function setSharedResultText() {
 
   const resultTextArray = summarizedResultToText();
 
-   if(resultTextArray === []){
+   if(resultTextArray.length === 0){
     resultTextArray.push("全員の予定が合う日程がありません");
   }else{
     resultTextArray.unshift("全員の予定が合う日程は以下の通りです");
   }
 
   const resultText = resultTextArray.join("\n");
-
   setSheet.getRange('F18').setValue(resultText);
 
 }
