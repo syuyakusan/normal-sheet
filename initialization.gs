@@ -93,9 +93,9 @@ function initializeFunc2(){
   if(reqNum < 7){
     setSheet.getRange(8+reqNum,6,7-reqNum,1).clearContent();
     setSheet.getRange(6,5,3,1).setFontColor('#484848');
-    setSheet.getRange('B11').setFontColor('#484848');
-    setSheet.getRange('C11').setFontColor('#f0f2f2');
   }
+  setSheet.getRange('B11').setFontColor('#484848');
+  setSheet.getRange('C11').setFontColor('#f0f2f2');
 
   // Google Formsに関する情報を入力させるために文字色を赤に(ポップアップなし)
   setSheet.getRange('J6').setFontColor('red');
