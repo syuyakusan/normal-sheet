@@ -74,6 +74,7 @@ function summarizeForms(){
   const form = FormApp.openById(formId);
   const formResponses = form.getResponses(); //全件の回答 
   const answerNum = formResponses.length;
+  console.log(answerNum);
   let latestForm = formResponses[answerNum- 1];
   if(typeof(latestForm) === "undefined") {
     setSheet.getRange('K12').setValue(0);
@@ -88,14 +89,16 @@ function summarizeForms(){
 
   let counter = setSheet.getRange('K12').getValue();
 
-  for (i=0;i < (answerNum - counter);i++) { //回答件数とカウンタが一致していない場合のみ実行
+  for (let i=0;i < (answerNum - counter);i++) { //回答件数とカウンタが一致していない場合のみ実行
     //処理
+    console.log(i);
 
     latestForm = formResponses[answerNum- 1 - i];
     let itemResponses = latestForm.getItemResponses(); //回答がまとまった配列
 
     let name = itemResponses[0].getResponse();
     let time = itemResponses[1].getResponse();
+    console.log(`${name}:${time}`);
 
     let timeArray = time.split('\n');//行ごとに分割
 
@@ -148,14 +151,16 @@ function summarizeForms(){
     //配列をもとにスプレッドシートに入力
     const sheet = spreadSheet.getSheetByName(name);
     
-    for (i=0;i<calculatedTimeArray.length;i++) {
-      let array = calculatedTimeArray[i];
+    for (let j=0;j<calculatedTimeArray.length;j++) {
+      let array = calculatedTimeArray[j];
       let column = array[0];
       let row = array[1];
       let length = array[2];
 
       sheet.getRange(row,column,length,1).setValue('○');
     }
+
+    console.log(i);
 
   }
 
